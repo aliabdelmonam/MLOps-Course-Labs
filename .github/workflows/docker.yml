@@ -124,7 +124,7 @@ jobs:
           script: |
             # Set variables
             DOCKER_IMAGE="${{ env.IMAGE_NAME }}:${{ github.sha }}"
-            CONTAINER_NAME="churn-prediction"
+            CONTAINER_NAME="trusting_lumiere"
             CONTAINER_PORT=8000
             HOST_PORT=8000
             
