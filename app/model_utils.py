@@ -15,8 +15,8 @@ _DATA_DIR = Path(__file__).parent.parent / "data"
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
-    model = joblib.load(_DATA_DIR / "model.joblib")
-    column_transformer = joblib.load(_DATA_DIR / "column_transformer.joblib")
+    model = joblib.load(_DATA_DIR / "model.pkl")
+    column_transformer = joblib.load(_DATA_DIR / "column_transformer.pkl")
 
 # Input feature order expected by the API / column transformer
 FEATURE_NAMES = [
