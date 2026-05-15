@@ -6,10 +6,10 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/churn-prediction-api
+  IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/churn-prediction
   ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-  ECR_REPOSITORY: churn-prediction-api
-
+  ECR_REPOSITORY: churn-prediction
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
 jobs:
   # Stage 1: Test and Validation
   test:
@@ -71,13 +71,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-        if: secrets.AWS_ACCOUNT_ID != ''
+        if: env.AWS_ACCOUNT_ID != ''
         continue-on-error: true
 
       - name: Login to Amazon ECR (Optional)
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        if: secrets.AWS_ACCOUNT_ID != ''
+        if: env.AWS_ACCOUNT_ID != ''
         continue-on-error: true
 
       - name: Build and push to Docker Hub
@@ -124,7 +124,7 @@ jobs:
           script: |
             # Set variables
             DOCKER_IMAGE="${{ env.IMAGE_NAME }}:${{ github.sha }}"
-            CONTAINER_NAME="churn-prediction-api"
+            CONTAINER_NAME="churn-prediction"
             CONTAINER_PORT=8000
             HOST_PORT=8000
             
