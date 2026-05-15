@@ -31,8 +31,8 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONDONTWRITEBYTECODE=1
 
 # Expose the default Litestar port
-EXPOSE 8000
+EXPOSE 5000
 
 # Stream logs to stdout (PYTHONUNBUFFERED=1 already handles this)
 # Run the Litestar app
-CMD ["litestar", "--app", "main:app", "run", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["litestar", "--app", "main:app", "run", "--host", "0.0.0.0", "--port", "5000"]
