@@ -126,7 +126,7 @@ jobs:
             DOCKER_IMAGE="${{ env.IMAGE_NAME }}:${{ github.sha }}"
             CONTAINER_NAME="trusting_lumiere"
             CONTAINER_PORT=8000
-            HOST_PORT=8000
+            HOST_PORT=8080
             
             # Pull the latest image
             docker pull $DOCKER_IMAGE
